@@ -4,41 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recruit | Future Tech Corp</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/microcms-js-sdk@latest/dist/microcms-js-sdk.umd.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-50 text-slate-900">
 
     <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50 py-4 px-6 text-center">
-        <div class="text-2xl font-black text-slate-900 tracking-tighter">FTC<span class="text-blue-600">.</span></div>
+        <div class="text-2xl font-black text-slate-900">FTC<span class="text-blue-600">.</span></div>
     </header>
 
-    <section class="h-[40vh] bg-slate-900 flex items-center justify-center pt-16 px-6 text-center">
+    <section class="h-[40vh] bg-slate-900 flex items-center justify-center pt-16 px-6 text-center text-white">
         <div>
-            <h1 class="text-3xl md:text-5xl font-black text-white uppercase">Update the World.</h1>
-            <p class="text-slate-400 mt-2 text-sm">テクノロジーの力で、まだ見ぬ未来をカタチに。</p>
+            <h1 class="text-3xl font-black uppercase">Update the World.</h1>
+            <p class="text-slate-400 mt-2 text-sm">テクノロジーの力で、未来をカタチに。</p>
         </div>
     </section>
 
     <section class="py-12 px-6 max-w-2xl mx-auto">
-        <h2 class="text-xl font-bold mb-8 border-l-4 border-blue-600 pl-3">LATEST NEWS</h2>
-        <div id="news-container" class="space-y-4 text-center">
-            <p class="text-slate-400">読み込み中...</p>
+        <h2 class="text-xl font-bold mb-8 border-l-4 border-blue-600 pl-3 uppercase">News</h2>
+        <div id="news-list" class="space-y-4">
+            <p class="text-slate-400">最新ニュースを読み込み中...</p>
         </div>
     </section>
 
-    <footer class="py-10 text-center border-t text-[10px] text-slate-400 font-bold tracking-widest uppercase">
-        &copy; 2026 Future Tech Corporation.
-    </footer>
-
     <script>
-        // ページが完全に準備できてから動くようにします
+        // ページが完全に読み込まれてから実行
         window.onload = function() {
-            const container = document.getElementById('news-container');
+            const list = document.getElementById('news-list');
             
-            // microcmsの道具があるかチェック
+            // microcmsがあるか最終チェック
             if (!window.microcms) {
-                container.innerHTML = '<p class="text-red-500 text-sm">エラー: 通信道具の読み込みに時間がかかっています。ページを再読み込み（F5）してください。</p>';
+                list.innerHTML = '<p class="text-red-500">読み込みに失敗しました。下の「魔法の操作」を試してください。</p>';
                 return;
             }
 
@@ -49,27 +45,19 @@
 
             client.get({ endpoint: 'blog' })
                 .then((res) => {
-                    container.innerHTML = '';
-                    container.className = 'space-y-4 text-left'; // 左寄せに戻す
-                    
-                    if (res.contents.length === 0) {
-                        container.innerHTML = '<p class="text-slate-400 text-sm">記事が見つかりません。microCMSで「公開」を確認してください。</p>';
-                        return;
-                    }
-
+                    list.innerHTML = '';
                     res.contents.forEach(post => {
-                        const date = new Date(post.createdAt).toLocaleDateString();
                         const html = `
                             <div class="p-5 bg-white rounded-xl shadow-sm border border-slate-100 hover:border-blue-300 transition-all cursor-pointer">
-                                <p class="text-xs font-bold text-blue-600 mb-1">${date}</p>
+                                <p class="text-xs font-bold text-blue-600 mb-1">${new Date(post.createdAt).toLocaleDateString()}</p>
                                 <h3 class="font-bold text-slate-800">${post.title}</h3>
                             </div>
                         `;
-                        container.insertAdjacentHTML('beforeend', html);
+                        list.insertAdjacentHTML('beforeend', html);
                     });
                 })
-                .catch((err) => {
-                    container.innerHTML = '<p class="text-red-500 text-sm">通信エラーが発生しました。設定を再確認してください。</p>';
+                .catch(() => {
+                    list.innerHTML = '<p class="text-red-500">通信エラーです。microCMS側を確認してください。</p>';
                 });
         };
     </script>
