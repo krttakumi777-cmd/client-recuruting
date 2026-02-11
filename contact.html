@@ -8,78 +8,27 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        input, textarea { outline: none; }
     </style>
 </head>
 <body class="bg-white text-slate-900">
 
     <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 py-5 px-8 flex justify-between items-center border-b border-slate-100">
-        <div class="text-xl font-black tracking-tighter cursor-pointer" onclick="location.href='home.html'">FTC<span class="text-blue-600">.</span></div>
+        <div class="text-xl font-black tracking-tighter cursor-pointer" onclick="location.href='index.html'">FTC<span class="text-blue-600">.</span></div>
         <nav class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
-            <a href="home.html" class="hover:text-slate-900 transition-colors">Home</a>
-            <a href="vision.html" class="hover:text-slate-900 transition-colors">Vision</a>
-            <a href="service.html" class="hover:text-slate-900 transition-colors">Service</a>
-            <a href="recruit.html" class="hover:text-slate-900 transition-colors">Recruit</a>
+            <a href="index.html" class="hover:text-slate-900">Home</a>
+            <a href="vision.html" class="hover:text-slate-900">Vision</a>
             <a href="contact.html" class="text-slate-900 border-b-2 border-blue-600 pb-1">Contact</a>
         </nav>
     </header>
 
-    <main class="pt-32 pb-20">
-        <section class="py-24 px-6 text-center">
-            <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-8 italic">Contact</h1>
-            <p class="text-blue-600 font-bold tracking-[0.3em] uppercase text-sm mb-4">お問い合わせ</p>
-            <p class="text-slate-400 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
-                事業に関するご相談、提携のご提案、採用に関するご質問など、<br class="hidden md:block">お気軽にお問い合わせください。
-            </p>
-        </section>
-
-        <section class="max-w-3xl mx-auto px-6">
-            <form action="#" method="POST" class="space-y-10 bg-slate-50 p-8 md:p-16 rounded-[2rem]">
-                
-                <div>
-                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Name / お名前</label>
-                    <input type="text" placeholder="田中 太郎" required
-                        class="w-full bg-white border-b-2 border-slate-200 py-3 px-4 focus:border-blue-600 transition-colors rounded-lg">
-                </div>
-
-                <div>
-                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Email / メールアドレス</label>
-                    <input type="email" placeholder="example@ftc.com" required
-                        class="w-full bg-white border-b-2 border-slate-200 py-3 px-4 focus:border-blue-600 transition-colors rounded-lg">
-                </div>
-
-                <div>
-                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Category / お問い合わせ項目</label>
-                    <select class="w-full bg-white border-b-2 border-slate-200 py-3 px-4 focus:border-blue-600 transition-colors rounded-lg appearance-none">
-                        <option>事業に関するご相談</option>
-                        <option>採用について</option>
-                        <option>取材・プレス関連</option>
-                        <option>その他</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Message / 内容</label>
-                    <textarea rows="6" placeholder="お問い合わせ内容をご入力ください" required
-                        class="w-full bg-white border-b-2 border-slate-200 py-3 px-4 focus:border-blue-600 transition-colors rounded-lg resize-none"></textarea>
-                </div>
-
-                <div class="pt-6 text-center">
-                    <button type="submit" 
-                        class="bg-slate-900 text-white px-16 py-5 rounded-full font-bold text-sm hover:bg-blue-600 transition-all shadow-xl shadow-slate-200">
-                        入力内容を確認して送信する
-                    </button>
-                    <p class="mt-6 text-[10px] text-slate-400">※お問い合わせいただいた内容は、個人情報保護方針に基づき厳重に管理いたします。</p>
-                </div>
-
-            </form>
-        </section>
+    <main class="pt-40 pb-20 px-6 max-w-3xl mx-auto text-center">
+        <h1 class="text-5xl font-black mb-8 italic">Contact</h1>
+        <p class="text-slate-500 mb-12 text-lg">お問い合わせは現在準備中です。</p>
+        <div class="p-20 bg-slate-50 rounded-[2rem] border-2 border-dashed border-slate-200 text-slate-400 font-bold">
+            FORM COMING SOON
+        </div>
+        <button onclick="location.href='index.html'" class="mt-12 text-sm font-bold text-blue-600">← ホームへ戻る</button>
     </main>
-
-    <footer class="py-12 text-center border-t border-slate-50 bg-white">
-        <div class="text-xl font-black tracking-tighter mb-4">FTC<span class="text-blue-600">.</span></div>
-        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">&copy; 2026 Future Tech Corporation.</p>
-    </footer>
 
 </body>
 </html>
