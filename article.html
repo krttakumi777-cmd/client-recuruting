@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News Detail | Future Tech Corp</title>
-    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .content-body img { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; }
+        .content-body img { max-width: 100%; height: auto; border-radius: 12px; margin: 24px 0; }
         .content-body p { margin-bottom: 1.5rem; line-height: 1.8; }
-        .content-body h2 { font-weight: bold; font-size: 1.25rem; margin-top: 2rem; margin-bottom: 1rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.5rem; }
+        .content-body h2 { font-weight: bold; font-size: 1.5rem; margin-top: 2.5rem; margin-bottom: 1rem; border-left: 4px solid #2563eb; padding-left: 1rem; }
     </style>
 </head>
 <body class="bg-white text-slate-900">
@@ -18,7 +18,7 @@
         <a href="index.html" class="text-xs font-bold text-blue-600 hover:underline underline-offset-4">← ニュース一覧に戻る</a>
     </header>
 
-    <article class="max-w-2xl mx-auto py-16 px-6">
+    <article class="max-w-2xl mx-auto py-12 px-6">
         <div id="loader" class="text-center py-20 text-slate-400 animate-pulse">記事を読み込み中...</div>
         
         <div id="article-content" class="hidden">
@@ -27,10 +27,9 @@
                 <span id="post-date" class="text-xs font-medium text-slate-400"></span>
             </div>
             
-            <h1 id="post-title" class="text-3xl md:text-4xl font-black text-slate-900 leading-tight mb-10 tracking-tighter"></h1>
+            <h1 id="post-title" class="text-3xl md:text-4xl font-black text-slate-900 leading-tight mb-8 tracking-tighter"></h1>
             
-            <div id="post-body" class="content-body text-slate-700">
-                </div>
+            <div id="post-body" class="content-body text-slate-700"></div>
         </div>
     </article>
 
@@ -61,8 +60,15 @@
                     const post = await response.json();
                     document.getElementById('post-date').innerText = new Date(post.createdAt).toLocaleDateString('ja-JP');
                     document.getElementById('post-title').innerText = post.title;
-                    document.getElementById('post-body').innerHTML = post.content;
                     
+                    // 画像があれば本文の前に表示
+                    let finalHtml = '';
+                    if (post.thumbnail && post.thumbnail.url) {
+                        finalHtml += `<img src="${post.thumbnail.url}" class="w-full h-auto object-cover rounded-2xl shadow-sm mb-10">`;
+                    }
+                    finalHtml += post.content;
+                    
+                    document.getElementById('post-body').innerHTML = finalHtml;
                     document.getElementById('loader').classList.add('hidden');
                     document.getElementById('article-content').classList.remove('hidden');
                 }
