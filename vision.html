@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision | Future Tech Corp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .vision-text { writing-mode: vertical-rl; } /* 日本語を美しく見せる縦書きアクセント用（任意） */
+    </style>
+</head>
+<body class="bg-white text-slate-900">
+
+    <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 py-5 px-8 flex justify-between items-center border-b border-slate-100">
+        <div class="text-xl font-black tracking-tighter cursor-pointer" onclick="location.href='home.html'">FTC<span class="text-blue-600">.</span></div>
+        <nav class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+            <a href="home.html" class="hover:text-slate-900 transition-colors">Home</a>
+            <a href="vision.html" class="text-slate-900 border-b-2 border-blue-600 pb-1">Vision</a>
+            <a href="article.html?id=ac8wizieqkjt&ep=blog" class="hover:text-slate-900 transition-colors">News</a>
+        </nav>
+    </header>
+
+    <main class="pt-32">
+        <section class="py-24 px-6 text-center border-b border-slate-50">
+            <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-8 italic">Vision</h1>
+            <p class="text-blue-600 font-bold tracking-[0.3em] uppercase text-sm">私たちの目指す未来</p>
+        </section>
+
+        <section class="max-w-4xl mx-auto py-32 px-6">
+            <div class="mb-24">
+                <h2 class="text-3xl md:text-5xl font-black leading-tight mb-12 tracking-tighter">
+                    「WOW」な体験を創り、<br>
+                    日常に「！」を届ける。
+                </h2>
+                <div class="space-y-8 text-slate-500 leading-loose text-lg">
+                    <p>
+                        私たちは、テクノロジーが単なる道具ではなく、人々の感情を動かすものであると信じています。
+                        昨日まで当たり前だった景色を、一瞬で新しい驚きに変えること。それが私たちの役割です。
+                    </p>
+                    <p>
+                        LINEヤフー社が掲げる「ライフプラットフォーム」としての在り方に習い、
+                        FTCは個々の生活に深く寄り添い、どんな小さな不便も見逃さず、
+                        最先端の技術で「！」という感動へと昇華させます。
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12 border-t border-slate-100 pt-24">
+                <div>
+                    <h3 class="font-black text-xl mb-4 italic text-blue-600">01. User First</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">全ての開発はユーザーの「不」の解消から始まります。</p>
+                </div>
+                <div>
+                    <h3 class="font-black text-xl mb-4 italic text-blue-600">02. Be Bold</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">失敗を恐れず、常に破壊的なイノベーションを追求します。</p>
+                </div>
+                <div>
+                    <h3 class="font-black text-xl mb-4 italic text-blue-600">03. High Tech, High Touch</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">最高の技術を、最も温かみのあるインターフェースで届けます。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-20 text-center border-t border-slate-50 bg-slate-50">
+        <div class="text-2xl font-black tracking-tighter mb-8">FTC<span class="text-blue-600">.</span></div>
+        <p class="text-[10px] text-slate-400 font-bold tracking-[0.2em] uppercase">
+            &copy; 2026 Future Tech Corporation.
+        </p>
+    </footer>
+
+</body>
+</html>
