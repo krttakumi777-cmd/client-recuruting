@@ -4,78 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recruit | Future Tech Corp</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Noto Sans JP"', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#1a1a1a',
-                        accent: '#3b82f6',
-                    }
-                }
-            }
-        }
-    </script>
-
     <script src="https://unpkg.com/microcms-js-sdk/dist/microcms-js-sdk.umd.js"></script>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
-
-    <style>
-        body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-        .glass-header { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-        html { scroll-behavior: smooth; }
-    </style>
 </head>
 <body class="bg-gray-50 text-slate-800">
-    <div id="root"></div>
+    <div id="root">読み込み中...（ここが消えない場合はエラーです）</div>
 
     <script type="text/babel">
         const { useState, useEffect } = React;
-        const { motion } = window.Motion;
 
-        // --- microCMS Client 設定 ---
-        const client = microcms.createClient({
-            serviceDomain: '1b0andgfz9',
-            apiKey: 'o4RH59hH1wsh7G6D8z3B9p7J2L4M6N8q3O4RH', 
-        });
-
-        // --- 部品 ---
-        const FadeIn = ({ children, delay = 0 }) => (
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay }}>
-                {children}
-            </motion.div>
-        );
-
-        const NewsSection = () => {
+        const App = () => {
             const [posts, setPosts] = useState([]);
-            const [loading, setLoading] = useState(true);
+            const [error, setError] = useState(null);
 
             useEffect(() => {
-                client.get({ endpoint: 'blog' })
-                    .then((res) => {
-                        setPosts(res.contents);
-                        setLoading(false);
-                    })
-                    .catch((err) => {
-                        console.error("データ取得エラー:", err);
-                        setLoading(false);
+                try {
+                    const client = microcms.createClient({
+                        serviceDomain: '1b0andgfz9',
+                        apiKey: 'o4RH59hH1wsh7G6D8z3B9p7J2L4M6N8q3O4RH', 
                     });
+
+                    client.get({ endpoint: 'blog' })
+                        .then((res) => setPosts(res.contents))
+                        .catch((err) => {
+                            console.error(err);
+                            setError("microCMSとの通信に失敗しました。キーを確認してください。");
+                        });
+                } catch (e) {
+                    setError("プログラムの起動に失敗しました。");
+                }
             }, []);
 
             return (
-                <section className="py-20 bg-white">
-                    <div className="container mx-auto px-6">
-                        <FadeIn>
-                            <h2 className="text-3xl font-black mb-10 text-center uppercase tracking-widest text-primary">Latest News</h2>
+                <div className="p-10">
+                    <h1 className="text-4xl font-black mb-8">TEST SITE</h1>
+                    {error && <p className="text-red-500 mb-4">{error}</p>}
+                    <div className="space-y-4">
+                        {posts.length > 0 ? (
+                            posts.map(post => (
+                                <div key={post.id} className="p-4 bg-white shadow rounded">
+                                    <h2 className="text-xl font-bold">{post.title}</h2>
+                                    <p className="text-gray-500 text-sm">{new Date(post.createdAt).toLocaleDateString()}</p>
+                                </div>
+                            ))
+                        ) : (
+                            !error && <p>記事を読み込んでいます...</p>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
