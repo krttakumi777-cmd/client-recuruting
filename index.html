@@ -1,7 +1,7 @@
-<header class="fixed top-0 w-full bg-white/95 backdrop-blur-md z-[100] border-b border-slate-100 h-20">
+<header class="fixed top-0 w-full bg-white z-[100] border-b border-slate-100 h-20 shadow-sm">
         <div class="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
             <div class="text-2xl font-black tracking-tighter cursor-pointer z-[110]" onclick="location.href='index.html'">
-                <span id="logo-text" class="text-slate-900 transition-colors duration-300">NCT</span><span class="text-cyan-500">.</span>
+                <span class="text-slate-900">NCT</span><span class="text-cyan-500">.</span>
             </div>
             
             <nav class="hidden lg:flex items-center gap-10">
@@ -12,41 +12,39 @@
                 <a href="contact.html" class="text-[10px] font-bold border-2 border-slate-900 px-5 py-2 hover:bg-slate-900 hover:text-white transition-all uppercase tracking-widest">Contact</a>
             </nav>
 
-            <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 z-[110] p-2">
+            <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 z-[110] p-2 focus:outline-none">
                 <span id="line1" class="w-6 h-0.5 bg-slate-900 transition-all duration-300 origin-center"></span>
                 <span id="line2" class="w-6 h-0.5 bg-slate-900 transition-all duration-300"></span>
                 <span id="line3" class="w-6 h-0.5 bg-slate-900 transition-all duration-300 origin-center"></span>
             </button>
         </div>
 
-        <div id="mobile-menu" class="fixed inset-0 bg-slate-950 translate-x-full transition-transform duration-500 lg:hidden flex flex-col items-center justify-center gap-8 text-3xl font-black tracking-tighter italic text-white">
-            <a href="vision.html" class="hover:text-cyan-400 transition-colors">Vision</a>
-            <a href="service.html" class="hover:text-cyan-400 transition-colors">Service</a>
-            <a href="recruit.html" class="hover:text-cyan-400 transition-colors">Recruit</a>
-            <a href="news.html" class="hover:text-cyan-400 transition-colors">News</a>
-            <a href="contact.html" class="text-sm not-italic mt-4 border-2 border-white px-8 py-3 rounded-full hover:bg-white hover:text-slate-950 transition-all">Contact</a>
-            
-            <div class="absolute bottom-10 opacity-10 text-8xl font-black italic select-none">NCT</div>
+        <div id="mobile-menu" class="fixed inset-0 bg-white translate-x-full transition-transform duration-500 lg:hidden flex flex-col items-center justify-center gap-8 text-3xl font-black italic text-slate-900">
+            <a href="vision.html" class="hover:text-cyan-600">Vision</a>
+            <a href="service.html" class="hover:text-cyan-600">Service</a>
+            <a href="recruit.html" class="hover:text-cyan-600">Recruit</a>
+            <a href="news.html" class="hover:text-cyan-600">News</a>
+            <a href="contact.html" class="text-sm not-italic mt-4 bg-slate-900 text-white px-10 py-4 rounded-full">Contact</a>
         </div>
     </header>
 
     <script>
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        const logoText = document.getElementById('logo-text');
         const l1 = document.getElementById('line1'), l2 = document.getElementById('line2'), l3 = document.getElementById('line3');
 
         menuBtn.addEventListener('click', () => {
-            const isOpen = mobileMenu.classList.toggle('translate-x-full');
-            
-            // メニューが開いているときは三本線とロゴを白くする
-            const colorClass = !isOpen ? 'bg-white' : 'bg-slate-900';
-            const logoClass = !isOpen ? 'text-white' : 'text-slate-900';
-            
-            l1.className = `w-6 h-0.5 ${colorClass} transition-all duration-300 origin-center ${!isOpen ? 'rotate-45 translate-y-2' : ''}`;
-            l2.className = `w-6 h-0.5 ${colorClass} transition-all duration-300 ${!isOpen ? 'opacity-0' : ''}`;
-            l3.className = `w-6 h-0.5 ${colorClass} transition-all duration-300 origin-center ${!isOpen ? '-rotate-45 -translate-y-2' : ''}`;
-            
-            logoText.className = `${logoClass} transition-colors duration-300`;
+            const isOpened = !mobileMenu.classList.contains('translate-x-full');
+            if (isOpened) {
+                mobileMenu.classList.add('translate-x-full');
+                l1.classList.remove('rotate-45', 'translate-y-2');
+                l2.classList.remove('opacity-0');
+                l3.classList.remove('-rotate-45', '-translate-y-2');
+            } else {
+                mobileMenu.classList.remove('translate-x-full');
+                l1.classList.add('rotate-45', 'translate-y-2');
+                l2.classList.add('opacity-0');
+                l3.classList.add('-rotate-45', '-translate-y-2');
+            }
         });
     </script>
