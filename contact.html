@@ -17,24 +17,13 @@
             <div class="text-2xl font-black tracking-tighter cursor-pointer z-[110]" onclick="location.href='index.html'">
                 <span class="text-slate-900">NCT</span><span class="text-cyan-500">.</span>
             </div>
-            
             <nav class="hidden lg:flex items-center gap-10">
-                <a href="vision.html" class="text-sm font-bold text-slate-600 hover:text-cyan-600 transition-colors">Vision</a>
-                <a href="service.html" class="text-sm font-bold text-slate-600 hover:text-cyan-600 transition-colors">Service</a>
-                <a href="recruit.html" class="text-sm font-bold text-slate-600 hover:text-cyan-600 transition-colors">Recruit</a>
-                <a href="news.html" class="text-sm font-bold text-slate-600 hover:text-cyan-600 transition-colors">News</a>
+                <a href="vision.html" class="text-sm font-bold text-slate-600 hover:text-cyan-600">Vision</a>
+                <a href="service.html" class="text-sm font-bold text-slate-600 hover:text-cyan-600">Service</a>
+                <a href="recruit.html" class="text-sm font-bold text-slate-600 hover:text-cyan-600">Recruit</a>
+                <a href="news.html" class="text-sm font-bold text-slate-600 hover:text-cyan-600">News</a>
                 <a href="contact.html" class="text-[10px] font-bold border-2 border-slate-900 px-5 py-2 hover:bg-slate-900 hover:text-white transition-all uppercase tracking-widest">Contact</a>
             </nav>
-
-            <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 z-[110] p-2 focus:outline-none">
-                <span id="line1" class="w-6 h-0.5 bg-slate-900 transition-all duration-300"></span>
-                <span id="line2" class="w-6 h-0.5 bg-slate-900 transition-all duration-300"></span>
-                <span id="line3" class="w-6 h-0.5 bg-slate-900 transition-all duration-300"></span>
-            </button>
-        </div>
-        <div id="mobile-menu" class="fixed inset-0 bg-white translate-x-full transition-transform duration-500 lg:hidden flex flex-col items-center justify-center gap-8 text-3xl font-black italic text-slate-900">
-            <a href="vision.html">Vision</a><a href="service.html">Service</a><a href="recruit.html">Recruit</a><a href="news.html">News</a>
-            <a href="contact.html" class="text-sm not-italic mt-4 bg-slate-900 text-white px-10 py-4 rounded-full">Contact</a>
         </div>
     </header>
 
@@ -43,7 +32,7 @@
         <p class="text-center text-slate-500 mb-12">ビジネス、採用、技術に関するお問い合わせ。</p>
         
         <form 
-            action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeYptHrYSqFZPIVZyQdiH-QwKIFuLK78WB7D56ihOXRZQ_-BQ/formResponse" 
+            action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSe_Uyl8iIlpvkISu6hb0jS8ckX8RsUPPmpLanPnelyz0/formResponse" 
             method="POST" 
             target="hidden_iframe"
             onsubmit="submitted=true;"
@@ -62,7 +51,7 @@
 
             <div>
                 <label class="text-[10px] font-black tracking-widest text-slate-400 ml-2 uppercase">Message</label>
-                <textarea name="entry.1469086111" required rows="5" placeholder="お問い合わせ内容をご記入ください" class="w-full p-4 rounded-xl border-none focus:ring-2 focus:ring-cyan-500 shadow-sm mt-1"></textarea>
+                <textarea name="entry.1469086111" required rows="5" placeholder="ご記入ください" class="w-full p-4 rounded-xl border-none focus:ring-2 focus:ring-cyan-500 shadow-sm mt-1"></textarea>
             </div>
 
             <button type="submit" class="w-full bg-[#1a1c24] text-white py-5 rounded-xl font-black hover:bg-cyan-600 transition-all shadow-lg text-lg uppercase tracking-widest">
@@ -73,13 +62,5 @@
         <script type="text/javascript">var submitted=false;</script>
         <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){window.location='thanks.html';}"></iframe>
     </main>
-
-    <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('translate-x-full');
-        });
-    </script>
 </body>
 </html>
