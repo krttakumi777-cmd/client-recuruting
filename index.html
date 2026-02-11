@@ -9,61 +9,76 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .hero-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
+        /* LINEヤフー風の細いアンダーラインアニメーション */
+        .nav-link { position: relative; padding-bottom: 4px; }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+            background-color: #2563eb; transition: width 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
     </style>
 </head>
 <body class="bg-white text-slate-900">
 
-    <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 py-5 px-8 flex justify-between items-center border-b border-slate-100">
-        <div class="text-xl font-black tracking-tighter cursor-pointer" onclick="window.scrollTo(0,0)">FTC<span class="text-blue-600">.</span></div>
-        <nav class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
-            <a href="#vision" class="hover:text-slate-900 transition-colors">Vision（理念）</a>
-            <a href="#recruit" class="hover:text-slate-900 transition-colors">Recruit（採用）</a>
-            <a href="news.html" class="hover:text-slate-900 transition-colors">News</a>
-            <a href="#contact" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-all text-[10px]">Contact</a>
-        </nav>
+    <header class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="text-2xl font-black tracking-tighter cursor-pointer" onclick="window.scrollTo(0,0)">
+                FTC<span class="text-blue-600">.</span>
+            </div>
+
+            <nav class="hidden lg:flex items-center gap-10">
+                <a href="#vision" class="nav-link text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">企業理念</a>
+                <a href="index.html" class="nav-link text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">ニュース</a>
+                <a href="#service" class="nav-link text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">サービス</a>
+                <a href="#tech" class="nav-link text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">テクノロジー</a>
+                <a href="#recruit" class="nav-link text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">採用情報</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="#contact" class="hidden md:block text-xs font-bold border-2 border-slate-900 px-5 py-2 hover:bg-slate-900 hover:text-white transition-all">お問い合わせ</a>
+                <button class="lg:hidden text-slate-900">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
     </header>
 
-    <section class="h-[90vh] hero-gradient flex items-center justify-center text-white px-6">
+    <section class="h-[85vh] hero-gradient flex items-center justify-center text-white px-6">
         <div class="max-w-4xl text-center">
-            <h2 class="text-blue-500 font-bold tracking-[0.3em] uppercase mb-4 text-sm">Update the World</h2>
-            <h1 class="text-5xl md:text-8xl font-black tracking-tighter leading-none mb-8">
-                まだ見ぬ未来を、<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">カタチにする。</span>
+            <h1 class="text-5xl md:text-7xl font-black tracking-tighter leading-tight mb-8">
+                「！」を届ける。<br>未来を創る。
             </h1>
-            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10 text-balance">
-                テクノロジーは手段に過ぎない。その先にある「驚き」と「豊かさ」を創り出すのが私たちの使命です。
+            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
+                私たちはテクノロジーの力で、日常に新しい価値と感動を提供し続けるライフプラットフォーム企業です。
             </p>
         </div>
     </section>
 
-    <section id="vision" class="py-32 px-6 bg-white">
-        <div class="max-w-3xl mx-auto text-center">
-            <h2 class="text-xs font-black text-blue-600 tracking-[0.3em] uppercase mb-4">Vision</h2>
-            <h3 class="text-3xl md:text-4xl font-bold mb-8 tracking-tighter">「当たり前」を塗り替える。</h3>
-            <p class="text-slate-500 leading-loose text-lg">
-                昨日の不可能を、今日の可能へ。私たちは既存の枠組みに囚われず、常に破壊的なイノベーションを追求します。すべての人がテクノロジーの恩恵を最大限に受け、可能性を広げられる社会を目指します。
-            </p>
+    <section id="vision" class="py-24 px-6 max-w-5xl mx-auto border-b">
+        <h2 class="text-3xl font-black mb-10 tracking-tight">企業理念</h2>
+        <div class="grid md:grid-cols-2 gap-12">
+            <p class="text-xl font-bold leading-relaxed">「WOW」な体験を創り、<br>日常に「！」を届ける。</p>
+            <p class="text-slate-500 leading-loose">私たちは、技術とデザインの力で、ユーザーの期待を超える驚き（WOW）を提供します。社会の課題を解決し、すべての人の生活をより豊かにすること。それがFTCの使命です。</p>
         </div>
     </section>
 
-    <section id="recruit" class="py-32 px-6 bg-slate-900 text-white overflow-hidden relative">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-16">
-            <div class="flex-1">
-                <h2 class="text-xs font-black text-blue-400 tracking-[0.3em] uppercase mb-4">Recruit</h2>
-                <h3 class="text-4xl font-black mb-6 tracking-tighter">冒険を、共に。</h3>
-                <p class="text-slate-400 mb-8 leading-relaxed">
-                    世界をアップデートする仲間を探しています。スキル以上に、「何を成し遂げたいか」という情熱を私たちは尊重します。
-                </p>
-                <ul class="space-y-4 mb-10 text-sm">
-                    <li class="flex items-center gap-3"><span class="text-blue-400">✔</span> エンジニア / デザイナー</li>
-                    <li class="flex items-center gap-3"><span class="text-blue-400">✔</span> プロジェクトマネージャー</li>
-                    <li class="flex items-center gap-3"><span class="text-blue-400">✔</span> フルリモート・フレックス制導入</li>
-                </ul>
-                <a href="#" class="inline-block border border-white/30 hover:bg-white hover:text-slate-900 px-8 py-4 font-bold text-xs transition-all uppercase tracking-widest">採用特設サイトへ</a>
-            </div>
-            <div class="flex-1 w-full aspect-square bg-slate-800 rounded-2xl relative flex items-center justify-center border border-white/10">
-                <span class="text-slate-700 font-black text-9xl italic">JOIN</span>
+    <section id="tech" class="py-24 px-6 bg-slate-50">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="text-3xl font-black mb-16">テクノロジー＆デザイン</h2>
+            <div class="grid md:grid-cols-2 gap-6 text-left">
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <h4 class="font-bold mb-4 text-blue-600">AI & Data Science</h4>
+                    <p class="text-sm text-slate-500">膨大なデータから価値を創出し、一人ひとりに最適化された体験を構築します。</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <h4 class="font-bold mb-4 text-blue-600">UX Design</h4>
+                    <p class="text-sm text-slate-500">直感的に使いやすく、心に響く美しいインターフェースを追求しています。</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="
+    <section id="recruit" class="py-24 px-6 max-w-5xl mx-auto">
+        <div class="bg-slate-900 rounded-
