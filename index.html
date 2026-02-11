@@ -9,57 +9,81 @@
 </head>
 <body class="bg-slate-50 text-slate-900">
 
-    <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50 py-4 px-6 text-center">
-        <div class="text-2xl font-black text-slate-900">FTC<span class="text-blue-600">.</span></div>
+    <header class="fixed top-0 w-full bg-white shadow-sm z-50 py-4 px-6 text-center">
+        <div class="text-2xl font-black text-slate-900 tracking-tighter italic">FTC<span class="text-blue-600">.</span></div>
     </header>
 
-    <section class="h-[40vh] bg-slate-900 flex items-center justify-center pt-16 px-6 text-center text-white">
+    <section class="h-[40vh] bg-[#0f172a] flex items-center justify-center pt-16 px-6 text-center">
         <div>
-            <h1 class="text-3xl font-black uppercase">Update the World.</h1>
-            <p class="text-slate-400 mt-2 text-sm">テクノロジーの力で、未来をカタチに。</p>
+            <h1 class="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter">Update the World.</h1>
+            <p class="text-slate-400 mt-4 text-sm md:text-base">テクノロジーの力で、まだ見ぬ未来をカタチに。</p>
         </div>
     </section>
 
-    <section class="py-12 px-6 max-w-2xl mx-auto">
-        <h2 class="text-xl font-bold mb-8 border-l-4 border-blue-600 pl-3 uppercase">News</h2>
-        <div id="news-list" class="space-y-4">
-            <p class="text-slate-400">最新ニュースを読み込み中...</p>
+    <section class="py-16 px-6 max-w-2xl mx-auto">
+        <h2 class="text-xl font-bold mb-10 border-l-4 border-blue-600 pl-4 uppercase tracking-widest text-slate-800">Latest News</h2>
+        
+        <div id="news-container" class="space-y-4">
+            <p class="text-slate-400 animate-pulse text-center">Newsを読み込み中...</p>
         </div>
     </section>
+
+    <footer class="py-10 text-center border-t text-[10px] text-slate-400 font-bold tracking-widest uppercase">
+        &copy; 2026 Future Tech Corporation.
+    </footer>
 
     <script>
-        // ページが完全に読み込まれてから実行
-        window.onload = function() {
-            const list = document.getElementById('news-list');
+        // 通信を開始する関数
+        async function fetchNews() {
+            const container = document.getElementById('news-container');
             
-            // microcmsがあるか最終チェック
-            if (!window.microcms) {
-                list.innerHTML = '<p class="text-red-500">読み込みに失敗しました。下の「魔法の操作」を試してください。</p>';
+            // 道具（SDK）が届くまで最大3秒待機するループ
+            let retryCount = 0;
+            while (typeof window.microcms === 'undefined' && retryCount < 30) {
+                await new Promise(resolve => setTimeout(resolve, 100)); // 0.1秒待つ
+                retryCount++;
+            }
+
+            if (typeof window.microcms === 'undefined') {
+                container.innerHTML = '<p class="text-red-500 text-sm">通信道具の準備が間に合いませんでした。ページを再読み込みしてください。</p>';
                 return;
             }
 
-            const client = window.microcms.createClient({
-                serviceDomain: '1b0andgfz9',
-                apiKey: 'o4RH59hH1wsh7G6D8z3B9p7J2L4M6N8q3O4RH', 
-            });
-
-            client.get({ endpoint: 'blog' })
-                .then((res) => {
-                    list.innerHTML = '';
-                    res.contents.forEach(post => {
-                        const html = `
-                            <div class="p-5 bg-white rounded-xl shadow-sm border border-slate-100 hover:border-blue-300 transition-all cursor-pointer">
-                                <p class="text-xs font-bold text-blue-600 mb-1">${new Date(post.createdAt).toLocaleDateString()}</p>
-                                <h3 class="font-bold text-slate-800">${post.title}</h3>
-                            </div>
-                        `;
-                        list.insertAdjacentHTML('beforeend', html);
-                    });
-                })
-                .catch(() => {
-                    list.innerHTML = '<p class="text-red-500">通信エラーです。microCMS側を確認してください。</p>';
+            try {
+                const client = window.microcms.createClient({
+                    serviceDomain: '1b0andgfz9',
+                    apiKey: 'o4RH59hH1wsh7G6D8z3B9p7J2L4M6N8q3O4RH', 
                 });
-        };
+
+                const res = await client.get({ endpoint: 'blog' });
+                container.innerHTML = ''; // 読み込み中を消す
+
+                if (res.contents.length === 0) {
+                    container.innerHTML = '<p class="text-slate-400 text-sm italic text-center">現在、新しいニュースはありません。</p>';
+                    return;
+                }
+
+                res.contents.forEach(post => {
+                    const date = new Date(post.createdAt).toLocaleDateString('ja-JP');
+                    const html = `
+                        <div class="p-6 bg-white rounded-xl shadow-sm border border-slate-100 hover:border-blue-400 hover:shadow-md transition-all cursor-pointer group">
+                            <div class="flex items-center gap-4 mb-2">
+                                <span class="text-[10px] font-bold bg-blue-50 text-blue-600 px-2 py-1 rounded uppercase">News</span>
+                                <span class="text-xs font-medium text-slate-400">${date}</span>
+                            </div>
+                            <h3 class="font-bold text-slate-800 group-hover:text-blue-600 transition-colors">${post.title}</h3>
+                        </div>
+                    `;
+                    container.insertAdjacentHTML('beforeend', html);
+                });
+            } catch (err) {
+                console.error(err);
+                container.innerHTML = '<p class="text-red-500 text-sm text-center">記事の取得に失敗しました。microCMSの設定を確認してください。</p>';
+            }
+        }
+
+        // 実行
+        fetchNews();
     </script>
 </body>
 </html>
