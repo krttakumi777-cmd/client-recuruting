@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recruit | Future Tech Corp</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/microcms-js-sdk/dist/microcms-js-sdk.umd.js"></script>
+    <script src="https://unpkg.com/microcms-js-sdk@latest/dist/microcms-js-sdk.umd.js"></script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body class="bg-gray-50 text-slate-800">
-    <div id="root">読み込み中...（ここが消えない場合はエラーです）</div>
+    <div id="root">読み込み中...</div>
 
     <script type="text/babel">
         const { useState, useEffect } = React;
@@ -21,39 +21,53 @@
             const [error, setError] = useState(null);
 
             useEffect(() => {
-                try {
-                    const client = microcms.createClient({
-                        serviceDomain: '1b0andgfz9',
-                        apiKey: 'o4RH59hH1wsh7G6D8z3B9p7J2L4M6N8q3O4RH', 
-                    });
-
-                    client.get({ endpoint: 'blog' })
-                        .then((res) => setPosts(res.contents))
-                        .catch((err) => {
-                            console.error(err);
-                            setError("microCMSとの通信に失敗しました。キーを確認してください。");
-                        });
-                } catch (e) {
-                    setError("プログラムの起動に失敗しました。");
+                // ウィンドウ全体で microcms が使えるかチェック
+                if (typeof window.microcms === 'undefined') {
+                    setError("通信ライブラリの読み込みに失敗しました。再読み込みしてください。");
+                    return;
                 }
+
+                const client = window.microcms.createClient({
+                    serviceDomain: '1b0andgfz9',
+                    apiKey: 'o4RH59hH1wsh7G6D8z3B9p7J2L4M6N8q3O4RH', 
+                });
+
+                client.get({ endpoint: 'blog' })
+                    .then((res) => setPosts(res.contents))
+                    .catch((err) => {
+                        console.error(err);
+                        setError("記事が見つかりません。microCMSのエンドポイント名を確認してください。");
+                    });
             }, []);
 
             return (
-                <div className="p-10">
-                    <h1 className="text-4xl font-black mb-8">TEST SITE</h1>
-                    {error && <p className="text-red-500 mb-4">{error}</p>}
+                <div className="p-10 max-w-2xl mx-auto">
+                    <h1 className="text-4xl font-black mb-8 text-blue-600">TEST SITE</h1>
+                    
+                    {error && (
+                        <div className="p-4 bg-red-100 text-red-700 rounded-lg mb-6">
+                            {error}
+                        </div>
+                    )}
+
                     <div className="space-y-4">
                         {posts.length > 0 ? (
                             posts.map(post => (
-                                <div key={post.id} className="p-4 bg-white shadow rounded">
-                                    <h2 className="text-xl font-bold">{post.title}</h2>
-                                    <p className="text-gray-500 text-sm">{new Date(post.createdAt).toLocaleDateString()}</p>
+                                <div key={post.id} className="p-6 bg-white shadow-lg rounded-xl border border-gray-100">
+                                    <h2 className="text-xl font-bold text-gray-800">{post.title}</h2>
+                                    <p className="text-gray-400 text-sm mt-2">
+                                        📅 {new Date(post.createdAt).toLocaleDateString()}
+                                    </p>
                                 </div>
                             ))
                         ) : (
-                            !error && <p>記事を読み込んでいます...</p>
+                            !error && <p className="text-gray-500 animate-pulse">microCMSから記事を取得中...</p>
                         )}
                     </div>
+
+                    {posts.length > 0 && (
+                        <p className="mt-10 text-green-500 font-bold">✅ 成功！microCMSからデータが届きました！</p>
+                    )}
                 </div>
             );
         };
