@@ -64,4 +64,33 @@
                             const card = document.createElement('div');
                             card.onclick = () => { location.href = 'article.html?id=' + post.id + '&ep=' + ep; };
                             
-                            // LINEヤフーを
+                            // LINEヤフーを意識した、シンプルで境界線のないリストスタイル
+                            card.className = "news-card py-8 border-b border-slate-100 flex gap-6 md:gap-10 items-center cursor-pointer group";
+                            
+                            const thumbUrl = post.thumbnail ? post.thumbnail.url : '';
+                            const thumbnailHtml = thumbUrl ? 
+                                `<div class="w-24 h-24 md:w-32 md:h-32 overflow-hidden rounded-sm shrink-0 bg-slate-100">
+                                    <img src="${thumbUrl}" class="w-full h-full object-cover transition-transform duration-500">
+                                 </div>` : '';
+
+                            card.innerHTML = `
+                                ${thumbnailHtml}
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-4 mb-3">
+                                        <span class="text-[10px] font-bold tracking-widest text-blue-600 uppercase">Press Release</span>
+                                        <span class="text-[11px] font-bold text-slate-300 tracking-tight">${date}</span>
+                                    </div>
+                                    <h3 class="text-base md:text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors leading-snug mb-2">${post.title}</h3>
+                                    <p class="text-xs md:text-sm text-slate-400 line-clamp-2 font-medium">${post.description || ''}</p>
+                                </div>
+                            `;
+                            container.appendChild(card);
+                        });
+                    }
+                } catch (e) {}
+            }
+        }
+        loadNews();
+    </script>
+</body>
+</html>
