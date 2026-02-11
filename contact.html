@@ -3,64 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Nexus Core Technologies</title>
+    <title>Contact | Future Tech Corp</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', sans-serif; background-color: #fff; }
+        /* フォームの読み込みをスムーズに見せるための枠 */
+        .form-container {
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+        }
     </style>
 </head>
 <body class="bg-white text-slate-900">
 
-    <header class="fixed top-0 w-full bg-white z-[100] border-b border-slate-200 h-20 shadow-md">
-        <div class="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
-            <div class="text-2xl font-black tracking-tighter cursor-pointer z-[110]" onclick="location.href='index.html'">
-                <span class="text-slate-900">NCT</span><span class="text-cyan-500">.</span>
-            </div>
-            <nav class="hidden lg:flex items-center gap-10">
-                <a href="vision.html" class="text-sm font-bold text-slate-600 hover:text-cyan-600">Vision</a>
-                <a href="service.html" class="text-sm font-bold text-slate-600 hover:text-cyan-600">Service</a>
-                <a href="recruit.html" class="text-sm font-bold text-slate-600 hover:text-cyan-600">Recruit</a>
-                <a href="news.html" class="text-sm font-bold text-slate-600 hover:text-cyan-600">News</a>
-                <a href="contact.html" class="text-[10px] font-bold border-2 border-slate-900 px-5 py-2 hover:bg-slate-900 hover:text-white transition-all uppercase tracking-widest">Contact</a>
-            </nav>
-        </div>
+    <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 py-5 px-8 flex justify-between items-center border-b border-slate-100">
+        <div class="text-xl font-black tracking-tighter cursor-pointer" onclick="location.href='index.html'">FTC<span class="text-blue-600">.</span></div>
+        <nav class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+            <a href="index.html" class="hover:text-slate-900 transition-colors">Home</a>
+            <a href="vision.html" class="hover:text-slate-900 transition-colors">Vision</a>
+            <a href="service.html" class="hover:text-slate-900 transition-colors">Service</a>
+            <a href="recruit.html" class="hover:text-slate-900 transition-colors">Recruit</a>
+            <a href="news.html" class="hover:text-slate-900 transition-colors">News</a>
+            <a href="contact.html" class="text-slate-900 border-b-2 border-blue-600 pb-1">Contact</a>
+        </nav>
     </header>
 
-    <main class="pt-40 pb-20 px-6 max-w-3xl mx-auto">
-        <h1 class="text-5xl font-black mb-4 italic text-center">Contact</h1>
-        <p class="text-center text-slate-500 mb-12">ビジネス、採用、技術に関するお問い合わせ。</p>
-        
-        <form 
-            action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeYptHrYSqFZPIVZyQdiH-QwKIFuLK78WB7D56ihOXRZQ_-BQ/formResponse" 
-            method="POST" 
-            target="hidden_iframe"
-            onsubmit="submitted=true;"
-            class="space-y-6 bg-slate-50 p-8 rounded-[2rem] shadow-inner"
-        >
-            <div>
-                <label class="text-[10px] font-black tracking-widest text-slate-400 ml-2 uppercase">Your Name</label>
-                <input type="text" name="entry.2066708796" required placeholder="お名前" class="w-full p-4 rounded-xl border-none focus:ring-2 focus:ring-cyan-500 shadow-sm mt-1">
+    <main class="pt-32 pb-20">
+        <section class="py-20 px-6 text-center">
+            <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-6 italic">Contact</h1>
+            <p class="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs mb-8">お問い合わせフォーム</p>
+            <p class="text-slate-400 text-sm max-w-md mx-auto leading-relaxed">
+                以下のフォームに必要事項をご記入の上、送信してください。通常2〜3営業日以内にご返信いたします。
+            </p>
+        </section>
+
+        <section class="max-w-4xl mx-auto px-4">
+            <div class="form-container bg-slate-50 rounded-[2.5rem] overflow-hidden border border-slate-100">
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSeYptHrYSqFZPIVZyQdiH-QwKIFuLK78WB7D56ihOXRZQ_-BQ/viewform?embedded=true" 
+                    width="100%" 
+                    height="900" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0"
+                    class="bg-transparent">
+                    読み込んでいます…
+                </iframe>
             </div>
-
-            <div>
-                <label class="text-[10px] font-black tracking-widest text-slate-400 ml-2 uppercase">Email Address</label>
-                <input type="text" name="entry.1439294975" required placeholder="example@nct.com" class="w-full p-4 rounded-xl border-none focus:ring-2 focus:ring-cyan-500 shadow-sm mt-1">
-                <p class="text-[10px] text-slate-400 mt-1 ml-2">※半角英数字で入力してください</p>
-            </div>
-
-            <div>
-                <label class="text-[10px] font-black tracking-widest text-slate-400 ml-2 uppercase">Message</label>
-                <textarea name="entry.1469086111" required rows="5" placeholder="ご記入ください" class="w-full p-4 rounded-xl border-none focus:ring-2 focus:ring-cyan-500 shadow-sm mt-1"></textarea>
-            </div>
-
-            <button type="submit" class="w-full bg-[#1a1c24] text-white py-5 rounded-xl font-black hover:bg-cyan-600 transition-all shadow-lg text-lg uppercase tracking-widest">
-                Send Message
-            </button>
-        </form>
-
-        <script type="text/javascript">var submitted=false;</script>
-        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){window.location='thanks.html';}"></iframe>
+        </section>
     </main>
+
+    <footer class="py-12 text-center border-t border-slate-50 text-[10px] text-slate-400 font-bold tracking-[0.2em] uppercase">
+        &copy; 2026 Future Tech Corporation.
+    </footer>
+
 </body>
 </html>
