@@ -22,7 +22,7 @@
     <section class="py-16 px-6 max-w-2xl mx-auto">
         <h2 class="text-xl font-bold mb-10 border-l-4 border-blue-600 pl-4 uppercase tracking-widest text-slate-800">Latest News</h2>
         <div id="news-container" class="space-y-4">
-            <p class="text-slate-400 text-center animate-pulse">Newsを読み込み中...</p>
+            <p class="text-slate-400 text-center animate-pulse">最終接続テスト中...</p>
         </div>
     </section>
 
@@ -33,36 +33,52 @@
     <script>
         async function loadNews() {
             const container = document.getElementById('news-container');
-            const url = 'https://1b0andgfz9.microcms.io/api/v1/blog';
-            // YOUさんが教えてくれた最新のAPIキーをセットしました！
+            
+            // 【重要】エンドポイント名を「blog」と「ブログ」両方試します
+            const endpoints = ['blog', 'ブログ'];
             const apiKey = 'K6mqClhlUAcZlnAlbzl0YtPfjbLa6MHNo4RH';
+            let success = false;
 
-            try {
-                const response = await fetch(url, {
-                    headers: { 'X-MICROCMS-API-KEY': apiKey }
-                });
+            for (const ep of endpoints) {
+                if (success) break;
+                
+                try {
+                    const response = await fetch(`https://1b0andgfz9.microcms.io/api/v1/${ep}`, {
+                        headers: { 'X-MICROCMS-API-KEY': apiKey }
+                    });
 
-                if (!response.ok) throw new Error('通信エラー（キーを確認してください）');
+                    if (response.ok) {
+                        const data = await response.json();
+                        success = true;
+                        container.innerHTML = ''; 
 
-                const data = await response.json();
-                container.innerHTML = ''; 
-
-                if (data.contents.length === 0) {
-                    container.innerHTML = '<p class="text-slate-400 text-center italic">現在、公開中の記事はありません。</p>';
-                    return;
+                        if (data.contents.length === 0) {
+                            container.innerHTML = '<p class="text-slate-400 text-center">記事がまだ公開されていません。</p>';
+                        } else {
+                            data.contents.forEach(post => {
+                                const date = new Date(post.createdAt).toLocaleDateString('ja-JP');
+                                container.insertAdjacentHTML('beforeend', `
+                                    <div class="p-6 bg-white rounded-xl shadow-sm border border-slate-100 hover:border-blue-400 transition-all cursor-pointer group">
+                                        <div class="flex items-center gap-4 mb-2">
+                                            <span class="text-[10px] font-bold bg-blue-50 text-blue-600 px-2 py-1 rounded">NEWS</span>
+                                            <span class="text-xs font-medium text-slate-400">\${date}</span>
+                                        </div>
+                                        <h3 class="font-bold text-slate-800 group-hover:text-blue-600 transition-colors">\${post.title}</h3>
+                                    </div>
+                                `);
+                            });
+                        }
+                    }
+                } catch (e) {
+                    console.error(e);
                 }
+            }
 
-                data.contents.forEach(post => {
-                    const date = new Date(post.createdAt).toLocaleDateString('ja-JP');
-                    container.insertAdjacentHTML('beforeend', `
-                        <div class="p-6 bg-white rounded-xl shadow-sm border border-slate-100 hover:border-blue-400 transition-all cursor-pointer group">
-                            <div class="flex items-center gap-4 mb-2">
-                                <span class="text-[10px] font-bold bg-blue-50 text-blue-600 px-2 py-1 rounded">NEWS</span>
-                                <span class="text-xs font-medium text-slate-400">\${date}</span>
-                            </div>
-                            <h3 class="font-bold text-slate-800 group-hover:text-blue-600 transition-colors">\${post.title}</h3>
-                        </div>
-                    `);
-                });
-            } catch (err) {
-                container.innerHTML = '<p class="text-red-500 text-center text-sm">エラーが発生しました。設定を再確認してください。</p>';
+            if (!success) {
+                container.innerHTML = '<p class="text-red-500 text-center text-sm font-bold">通信に失敗しました。microCMSの「API設定」でエンドポイント名（URLの末尾）を確認してください。</p>';
+            }
+        }
+        loadNews();
+    </script>
+</body>
+</html>
