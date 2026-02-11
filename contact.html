@@ -8,41 +8,52 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #fff; }
-        /* フォームの読み込みをスムーズに見せるための枠 */
         .form-container {
             box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+        }
+        /* スマホでメニューを横スクロールできるようにする設定 */
+        @media (max-width: 768px) {
+            .nav-scroll {
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+            .nav-scroll::-webkit-scrollbar { display: none; } /* スクロールバーを隠す */
         }
     </style>
 </head>
 <body class="bg-white text-slate-900">
 
-    <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 py-5 px-8 flex justify-between items-center border-b border-slate-100">
-        <div class="text-xl font-black tracking-tighter cursor-pointer" onclick="location.href='index.html'">FTC<span class="text-blue-600">.</span></div>
-        <nav class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
-            <a href="index.html" class="hover:text-slate-900 transition-colors">Home</a>
-            <a href="vision.html" class="hover:text-slate-900 transition-colors">Vision</a>
-            <a href="service.html" class="hover:text-slate-900 transition-colors">Service</a>
-            <a href="recruit.html" class="hover:text-slate-900 transition-colors">Recruit</a>
-            <a href="news.html" class="hover:text-slate-900 transition-colors">News</a>
-            <a href="contact.html" class="text-slate-900 border-b-2 border-blue-600 pb-1">Contact</a>
-        </nav>
+    <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-xl font-black tracking-tighter cursor-pointer" onclick="location.href='index.html'">FTC<span class="text-blue-600">.</span></div>
+            
+            <nav class="nav-scroll flex gap-6 md:gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 w-full md:w-auto justify-center">
+                <a href="index.html" class="hover:text-slate-900 transition-colors">Home</a>
+                <a href="vision.html" class="hover:text-slate-900 transition-colors">Vision</a>
+                <a href="service.html" class="hover:text-slate-900 transition-colors">Service</a>
+                <a href="recruit.html" class="hover:text-slate-900 transition-colors">Recruit</a>
+                <a href="news.html" class="hover:text-slate-900 transition-colors">News</a>
+                <a href="contact.html" class="text-slate-900 border-b-2 border-blue-600 pb-1">Contact</a>
+            </nav>
+        </div>
     </header>
 
-    <main class="pt-32 pb-20">
-        <section class="py-20 px-6 text-center">
-            <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-6 italic">Contact</h1>
-            <p class="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs mb-8">お問い合わせフォーム</p>
-            <p class="text-slate-400 text-sm max-w-md mx-auto leading-relaxed">
+    <main class="pt-32 pb-10">
+        <section class="py-10 md:py-20 px-6 text-center">
+            <h1 class="text-4xl md:text-7xl font-black tracking-tighter mb-4 md:mb-6 italic">Contact</h1>
+            <p class="text-blue-600 font-bold tracking-[0.3em] uppercase text-[10px] md:text-xs mb-6 md:mb-8">お問い合わせフォーム</p>
+            <p class="text-slate-400 text-xs md:text-sm max-w-md mx-auto leading-relaxed px-4">
                 以下のフォームに必要事項をご記入の上、送信してください。通常2〜3営業日以内にご返信いたします。
             </p>
         </section>
 
-        <section class="max-w-4xl mx-auto px-4">
-            <div class="form-container bg-slate-50 rounded-[2.5rem] overflow-hidden border border-slate-100">
+        <section class="max-w-4xl mx-auto px-2 md:px-4">
+            <div class="form-container bg-slate-50 rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden border border-slate-100">
                 <iframe 
                     src="https://docs.google.com/forms/d/e/1FAIpQLSeYptHrYSqFZPIVZyQdiH-QwKIFuLK78WB7D56ihOXRZQ_-BQ/viewform?embedded=true" 
                     width="100%" 
-                    height="900" 
+                    height="1000" 
                     frameborder="0" 
                     marginheight="0" 
                     marginwidth="0"
