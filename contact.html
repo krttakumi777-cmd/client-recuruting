@@ -3,70 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Future Tech Corp</title>
+    <title>Contact | NCT.</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #fff; }
-        .form-container {
-            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,900;1,900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
+        
+        /* 入力欄の薄いブルーの背景を再現 */
+        .input-field {
+            background-color: #eef4ff;
+            border: none;
+            border-radius: 8px;
+            padding: 16px;
+            width: 100%;
+            outline: none;
         }
-        /* スマホでメニューを横スクロールできるようにする設定 */
-        @media (max-width: 768px) {
-            .nav-scroll {
-                overflow-x: auto;
-                white-space: nowrap;
-                -webkit-overflow-scrolling: touch;
-            }
-            .nav-scroll::-webkit-scrollbar { display: none; } /* スクロールバーを隠す */
+        /* ラベルのスタイル */
+        .label-text {
+            font-size: 10px;
+            font-weight: 900;
+            color: #94a3b8;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+            display: block;
+            text-transform: uppercase;
         }
     </style>
 </head>
-<body class="bg-white text-slate-900">
+<body class="bg-[#f8f9fa] text-slate-900">
 
-    <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-xl font-black tracking-tighter cursor-pointer" onclick="location.href='index.html'">FTC<span class="text-blue-600">.</span></div>
-            
-            <nav class="nav-scroll flex gap-6 md:gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 w-full md:w-auto justify-center">
-                <a href="index.html" class="hover:text-slate-900 transition-colors">Home</a>
-                <a href="vision.html" class="hover:text-slate-900 transition-colors">Vision</a>
-                <a href="service.html" class="hover:text-slate-900 transition-colors">Service</a>
-                <a href="recruit.html" class="hover:text-slate-900 transition-colors">Recruit</a>
-                <a href="news.html" class="hover:text-slate-900 transition-colors">News</a>
-                <a href="contact.html" class="text-slate-900 border-b-2 border-blue-600 pb-1">Contact</a>
-            </nav>
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-slate-100">
+        <div class="flex justify-between items-center px-6 py-4">
+            <div class="text-xl font-black">☰</div>
+            <div class="text-2xl font-[900] tracking-tighter">NCT<span class="text-blue-600">.</span></div>
+            <div class="text-xl font-black">🔍</div>
+        </div>
+        <div class="flex overflow-x-auto whitespace-nowrap px-4 py-2 gap-6 text-[11px] font-bold border-t border-slate-50 no-scrollbar">
+            <a href="vision.html" class="text-slate-400">Vision</a>
+            <a href="service.html" class="text-slate-400 border-b-2 border-blue-600 pb-1">Service</a>
+            <a href="service.html" class="text-slate-400">Service</a>
+            <a href="recruit.html" class="text-slate-400">Recruit</a>
+            <a href="news.html" class="text-slate-400">News</a>
+            <a href="contact.html" class="text-slate-900 border-2 border-slate-900 px-3 py-1 rounded">Contact</a>
         </div>
     </header>
 
-    <main class="pt-32 pb-10">
-        <section class="py-10 md:py-20 px-6 text-center">
-            <h1 class="text-4xl md:text-7xl font-black tracking-tighter mb-4 md:mb-6 italic">Contact</h1>
-            <p class="text-blue-600 font-bold tracking-[0.3em] uppercase text-[10px] md:text-xs mb-6 md:mb-8">お問い合わせフォーム</p>
-            <p class="text-slate-400 text-xs md:text-sm max-w-md mx-auto leading-relaxed px-4">
-                以下のフォームに必要事項をご記入の上、送信してください。通常2〜3営業日以内にご返信いたします。
-            </p>
-        </section>
+    <main class="pt-40 pb-20 px-6">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-[900] italic mb-3 tracking-tight">Contact</h1>
+            <p class="text-[11px] text-slate-400 font-bold">ビジネス、採用、技術に関するお問い合わせ。</p>
+        </div>
 
-        <section class="max-w-4xl mx-auto px-2 md:px-4">
-            <div class="form-container bg-slate-50 rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden border border-slate-100">
-                <iframe 
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSeYptHrYSqFZPIVZyQdiH-QwKIFuLK78WB7D56ihOXRZQ_-BQ/viewform?embedded=true" 
-                    width="100%" 
-                    height="1000" 
-                    frameborder="0" 
-                    marginheight="0" 
-                    marginwidth="0"
-                    class="bg-transparent">
-                    読み込んでいます…
-                </iframe>
-            </div>
-        </section>
+        <div class="max-w-md mx-auto bg-white rounded-[2rem] p-8 shadow-sm">
+            <form action="https://formspree.io/f/あなたのフォームID" method="POST" class="space-y-6">
+                
+                <div>
+                    <label class="label-text">Your Name</label>
+                    <input type="text" name="name" placeholder="tt" class="input-field">
+                </div>
+
+                <div>
+                    <label class="label-text">Email Address</label>
+                    <input type="email" name="email" placeholder="krttakumi777@gmail.com" class="input-field">
+                    <p class="text-[8px] text-slate-300 mt-2">※半角英数字で入力してください</p>
+                </div>
+
+                <div>
+                    <label class="label-text">Message</label>
+                    <textarea name="message" rows="5" class="input-field bg-white border border-slate-100 italic text-slate-400">っr</textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-[#111] text-white py-5 rounded-xl font-black text-sm tracking-widest uppercase hover:bg-blue-600 transition-all">
+                    Send Message
+                </button>
+            </form>
+        </div>
     </main>
-
-    <footer class="py-12 text-center border-t border-slate-50 text-[10px] text-slate-400 font-bold tracking-[0.2em] uppercase">
-        &copy; 2026 Future Tech Corporation.
-    </footer>
 
 </body>
 </html>
