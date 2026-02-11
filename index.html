@@ -22,7 +22,7 @@
     <section class="py-16 px-6 max-w-2xl mx-auto">
         <h2 class="text-xl font-bold mb-10 border-l-4 border-blue-600 pl-4 uppercase tracking-widest text-slate-800">Latest News</h2>
         <div id="news-container" class="space-y-4">
-            <p id="loading-text" class="text-slate-400 text-center animate-pulse">データを読み込み中...</p>
+            <p class="text-slate-400 text-center animate-pulse">Newsを読み込み中...</p>
         </div>
     </section>
 
@@ -34,20 +34,21 @@
         async function loadNews() {
             const container = document.getElementById('news-container');
             const url = 'https://1b0andgfz9.microcms.io/api/v1/blog';
-            const apiKey = 'o4RH59hH1wsh7G6D8z3B9p7J2L4M6N8q3O4RH';
+            // YOUさんが教えてくれた最新のAPIキーをセットしました！
+            const apiKey = 'K6mqClhlUAcZlnAlbzl0YtPfjbLa6MHNo4RH';
 
             try {
                 const response = await fetch(url, {
                     headers: { 'X-MICROCMS-API-KEY': apiKey }
                 });
 
-                if (!response.ok) throw new Error('通信エラー');
+                if (!response.ok) throw new Error('通信エラー（キーを確認してください）');
 
                 const data = await response.json();
-                container.innerHTML = ''; // 読み込み中を消す
+                container.innerHTML = ''; 
 
-                if (!data.contents || data.contents.length === 0) {
-                    container.innerHTML = '<p class="text-slate-400 text-center italic">公開中の記事がありません。管理画面で「公開」を押してください。</p>';
+                if (data.contents.length === 0) {
+                    container.innerHTML = '<p class="text-slate-400 text-center italic">現在、公開中の記事はありません。</p>';
                     return;
                 }
 
@@ -57,18 +58,11 @@
                         <div class="p-6 bg-white rounded-xl shadow-sm border border-slate-100 hover:border-blue-400 transition-all cursor-pointer group">
                             <div class="flex items-center gap-4 mb-2">
                                 <span class="text-[10px] font-bold bg-blue-50 text-blue-600 px-2 py-1 rounded">NEWS</span>
-                                <span class="text-xs font-medium text-slate-400">${date}</span>
+                                <span class="text-xs font-medium text-slate-400">\${date}</span>
                             </div>
-                            <h3 class="font-bold text-slate-800 group-hover:text-blue-600 transition-colors">${post.title}</h3>
+                            <h3 class="font-bold text-slate-800 group-hover:text-blue-600 transition-colors">\${post.title}</h3>
                         </div>
                     `);
                 });
             } catch (err) {
-                container.innerHTML = '<p class="text-red-500 text-center text-sm font-bold">通信に失敗しました。管理画面でAPIプレビューが動くか確認してください。</p>';
-            }
-        }
-
-        loadNews();
-    </script>
-</body>
-</html>
+                container.innerHTML = '<p class="text-red-500 text-center text-sm">エラーが発生しました。設定を再確認してください。</p>';
