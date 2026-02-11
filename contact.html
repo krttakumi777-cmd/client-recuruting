@@ -27,24 +27,20 @@
             </nav>
 
             <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 z-[110] p-2 focus:outline-none">
-                <span id="line1" class="w-6 h-0.5 bg-slate-900 transition-all duration-300 origin-center"></span>
+                <span id="line1" class="w-6 h-0.5 bg-slate-900 transition-all duration-300"></span>
                 <span id="line2" class="w-6 h-0.5 bg-slate-900 transition-all duration-300"></span>
-                <span id="line3" class="w-6 h-0.5 bg-slate-900 transition-all duration-300 origin-center"></span>
+                <span id="line3" class="w-6 h-0.5 bg-slate-900 transition-all duration-300"></span>
             </button>
         </div>
-
         <div id="mobile-menu" class="fixed inset-0 bg-white translate-x-full transition-transform duration-500 lg:hidden flex flex-col items-center justify-center gap-8 text-3xl font-black italic text-slate-900">
-            <a href="vision.html">Vision</a>
-            <a href="service.html">Service</a>
-            <a href="recruit.html">Recruit</a>
-            <a href="news.html">News</a>
+            <a href="vision.html">Vision</a><a href="service.html">Service</a><a href="recruit.html">Recruit</a><a href="news.html">News</a>
             <a href="contact.html" class="text-sm not-italic mt-4 bg-slate-900 text-white px-10 py-4 rounded-full">Contact</a>
         </div>
     </header>
 
     <main class="pt-40 pb-20 px-6 max-w-3xl mx-auto">
         <h1 class="text-5xl font-black mb-4 italic text-center">Contact</h1>
-        <p class="text-center text-slate-500 mb-12">プロジェクトのご相談、お見積りなどお気軽にお問い合わせください。</p>
+        <p class="text-center text-slate-500 mb-12">ビジネス、採用、技術に関するお問い合わせ。</p>
         
         <form 
             action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeYptHrYSqFZPIVZyQdiH-QwKIFuLK78WB7D56ihOXRZQ_-BQ/formResponse" 
@@ -54,22 +50,23 @@
             class="space-y-6 bg-slate-50 p-8 rounded-[2rem] shadow-inner"
         >
             <div>
-                <label class="text-xs font-bold text-slate-400 ml-2">NAME</label>
+                <label class="text-[10px] font-black tracking-widest text-slate-400 ml-2 uppercase">Your Name</label>
                 <input type="text" name="entry.2066708796" required placeholder="お名前" class="w-full p-4 rounded-xl border-none focus:ring-2 focus:ring-cyan-500 shadow-sm mt-1">
             </div>
 
             <div>
-                <label class="text-xs font-bold text-slate-400 ml-2">EMAIL</label>
-                <input type="email" name="entry.1439294975" required placeholder="メールアドレス" class="w-full p-4 rounded-xl border-none focus:ring-2 focus:ring-cyan-500 shadow-sm mt-1">
+                <label class="text-[10px] font-black tracking-widest text-slate-400 ml-2 uppercase">Email Address</label>
+                <input type="text" name="entry.1439294975" required placeholder="example@nct.com" class="w-full p-4 rounded-xl border-none focus:ring-2 focus:ring-cyan-500 shadow-sm mt-1">
+                <p class="text-[10px] text-slate-400 mt-1 ml-2">※半角英数字で入力してください</p>
             </div>
 
             <div>
-                <label class="text-xs font-bold text-slate-400 ml-2">MESSAGE</label>
+                <label class="text-[10px] font-black tracking-widest text-slate-400 ml-2 uppercase">Message</label>
                 <textarea name="entry.1469086111" required rows="5" placeholder="お問い合わせ内容をご記入ください" class="w-full p-4 rounded-xl border-none focus:ring-2 focus:ring-cyan-500 shadow-sm mt-1"></textarea>
             </div>
 
-            <button type="submit" class="w-full bg-slate-900 text-white py-4 rounded-xl font-bold hover:bg-cyan-600 transition-all shadow-lg text-lg">
-                SEND MESSAGE
+            <button type="submit" class="w-full bg-[#1a1c24] text-white py-5 rounded-xl font-black hover:bg-cyan-600 transition-all shadow-lg text-lg uppercase tracking-widest">
+                Send Message
             </button>
         </form>
 
@@ -80,21 +77,8 @@
     <script>
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        const l1 = document.getElementById('line1'), l2 = document.getElementById('line2'), l3 = document.getElementById('line3');
-
         menuBtn.addEventListener('click', () => {
-            const isOpen = !mobileMenu.classList.contains('translate-x-full');
-            if (isOpen) {
-                mobileMenu.classList.add('translate-x-full');
-                l1.classList.remove('rotate-45', 'translate-y-2');
-                l2.classList.remove('opacity-0');
-                l3.classList.remove('-rotate-45', '-translate-y-2');
-            } else {
-                mobileMenu.classList.remove('translate-x-full');
-                l1.classList.add('rotate-45', 'translate-y-2');
-                l2.classList.add('opacity-0');
-                l3.classList.add('-rotate-45', '-translate-y-2');
-            }
+            mobileMenu.classList.toggle('translate-x-full');
         });
     </script>
 </body>
