@@ -9,71 +9,73 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .hero-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
-        .nav-link { position: relative; padding-bottom: 4px; }
-        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: #2563eb; transition: width 0.3s; }
-        .nav-link:hover::after { width: 100%; }
     </style>
 </head>
 <body class="bg-white text-slate-900">
 
-    <header class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-slate-100">
+    <header class="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="text-2xl font-black tracking-tighter cursor-pointer" onclick="window.scrollTo(0,0)">FTC<span class="text-blue-600">.</span></div>
+            <div class="text-2xl font-black tracking-tighter cursor-pointer" onclick="location.href='index.html'">FTC<span class="text-blue-600">.</span></div>
 
             <nav class="hidden lg:flex items-center gap-10">
-                <a href="#vision" class="nav-link text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">企業理念</a>
-                <a href="index.html" class="nav-link text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">ニュース</a>
-                <a href="#service" class="nav-link text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">サービス</a>
-                <a href="#recruit" class="nav-link text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">採用情報</a>
+                <a href="vision.html" class="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">企業理念</a>
+                <a href="article.html?id=ac8wizieqkjt&ep=blog" class="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">ニュース</a>
+                <a href="#service" class="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">サービス</a>
+                <a href="#recruit" class="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">採用情報</a>
             </nav>
 
-            <a href="#contact" class="hidden md:block text-xs font-bold border-2 border-slate-900 px-5 py-2 hover:bg-slate-900 hover:text-white transition-all">お問い合わせ</a>
+            <a href="#contact" class="hidden md:block text-[10px] font-bold border-2 border-slate-900 px-5 py-2 hover:bg-slate-900 hover:text-white transition-all uppercase tracking-widest">お問い合わせ</a>
         </div>
     </header>
 
     <section class="h-[80vh] hero-gradient flex items-center justify-center text-white px-6">
         <div class="max-w-4xl text-center">
             <h1 class="text-5xl md:text-7xl font-black tracking-tighter leading-tight mb-8">「！」を届ける。</h1>
-            <p class="text-slate-400 text-lg">マイクロCMSと連携した最新のコーポレートサイトデモ</p>
+            <div class="flex justify-center gap-4">
+                <button onclick="location.href='vision.html'" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-bold text-sm transition-all">私たちの想い</button>
+            </div>
         </div>
     </section>
 
     <section class="py-24 px-6 max-w-5xl mx-auto">
-        <h2 class="text-3xl font-black mb-12">Latest News</h2>
-        <div id="home-news-container" class="grid md:grid-cols-3 gap-8 text-left">
-             </div>
+        <div class="flex justify-between items-end mb-12">
+            <h2 class="text-3xl font-black tracking-tight">Latest News</h2>
+            <a href="article.html?id=ac8wizieqkjt&ep=blog" class="text-blue-600 font-bold text-xs hover:underline">もっと見る →</a>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="cursor-pointer group" onclick="location.href='article.html?id=ac8wizieqkjt&ep=blog'">
+                <div class="aspect-video overflow-hidden rounded-xl mb-4 bg-slate-100">
+                    <img src="https://images.unsplash.com/photo-1504711432869-efd597cdd042?w=800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <p class="text-[10px] font-bold text-blue-600 mb-2 uppercase tracking-widest">News Release</p>
+                <h3 class="text-xl font-bold group-hover:text-blue-600 transition-colors">新しい未来を創る、FTCプロジェクト始動。</h3>
+            </div>
+        </div>
     </section>
 
-    <script>
-        async function loadHomeNews() {
-            const container = document.getElementById('home-news-container');
-            const apiKey = 'K6mqClhlUAcZlnAlbzl0YtPfjbLa6MHNo4RH';
-            const domain = '1b0andgfz9';
-            // ブログエンドポイントから最新3件取得
-            const url = `https://${domain}.microcms.io/api/v1/blog?limit=3`;
+    <section id="service" class="py-32 px-6 bg-slate-50">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="text-3xl font-black mb-16">事業内容</h2>
+            <div class="grid md:grid-cols-3 gap-8 text-left">
+                <div class="bg-white p-10 rounded-2xl shadow-sm border border-slate-100">
+                    <h3 class="font-bold text-lg mb-4">AI Solution</h3>
+                    <p class="text-sm text-slate-400">ビジネスを加速させる最新AIの実装支援。</p>
+                </div>
+                </div>
+        </div>
+    </section>
 
-            try {
-                const response = await fetch(url, { headers: { 'X-MICROCMS-API-KEY': apiKey } });
-                if (response.ok) {
-                    const data = await response.json();
-                    container.innerHTML = '';
-                    data.contents.forEach(post => {
-                        const thumb = post.thumbnail ? post.thumbnail.url : 'https://images.unsplash.com/photo-1504711432869-efd597cdd042?w=400';
-                        
-                        // ここで確実に article.html へ飛ばすように設定
-                        container.insertAdjacentHTML('beforeend', `
-                            <div class="group cursor-pointer" onclick="location.href='article.html?id=${post.id}&ep=blog'">
-                                <div class="aspect-video overflow-hidden rounded-lg mb-4 bg-slate-100">
-                                    <img src="${thumb}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                </div>
-                                <h3 class="font-bold text-slate-800 line-clamp-2 group-hover:text-blue-600 transition-colors">${post.title}</h3>
-                            </div>
-                        `);
-                    });
-                }
-            } catch (e) { console.error(e); }
-        }
-        loadHomeNews();
-    </script>
+    <section id="recruit" class="py-32 px-6">
+        <div class="max-w-5xl mx-auto bg-slate-900 rounded-[2rem] p-16 text-white text-center">
+            <h2 class="text-4xl font-black mb-6">Recruit</h2>
+            <p class="text-slate-400 mb-10">私たちは、共に「！」を創る仲間を募集しています。</p>
+            <button onclick="location.href='article.html?id=ac8wizieqkjt&ep=blog'" class="bg-white text-slate-900 px-12 py-4 rounded-full font-bold hover:bg-blue-50 transition-all">募集要項を確認する</button>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center border-t">
+        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">&copy; 2026 Future Tech Corporation.</p>
+    </footer>
+
 </body>
 </html>
