@@ -3,32 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Future Tech Corp</title>
+    <title>Contact | Nexus Core Technologies</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-    </style>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap'); body { font-family: 'Inter', sans-serif; }</style>
 </head>
-<body class="bg-white text-slate-900">
-
+<body class="bg-white">
     <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 py-5 px-8 flex justify-between items-center border-b border-slate-100">
-        <div class="text-xl font-black tracking-tighter cursor-pointer" onclick="location.href='index.html'">FTC<span class="text-blue-600">.</span></div>
-        <nav class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+        <div class="text-xl font-black tracking-tighter cursor-pointer" onclick="location.href='index.html'">NCT<span class="text-cyan-500">.</span></div>
+        <nav class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-400">
             <a href="index.html" class="hover:text-slate-900">Home</a>
-            <a href="vision.html" class="hover:text-slate-900">Vision</a>
-            <a href="contact.html" class="text-slate-900 border-b-2 border-blue-600 pb-1">Contact</a>
+            <a href="contact.html" class="text-slate-900 border-b-2 border-cyan-500 pb-1">Contact</a>
         </nav>
     </header>
 
-    <main class="pt-40 pb-20 px-6 max-w-3xl mx-auto text-center">
-        <h1 class="text-5xl font-black mb-8 italic">Contact</h1>
-        <p class="text-slate-500 mb-12 text-lg">お問い合わせは現在準備中です。</p>
-        <div class="p-20 bg-slate-50 rounded-[2rem] border-2 border-dashed border-slate-200 text-slate-400 font-bold">
-            FORM COMING SOON
+    <main class="pt-40 pb-20 px-6 max-w-3xl mx-auto">
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-black tracking-tighter mb-4 italic">Contact</h1>
+            <p class="text-slate-400">ビジネス、採用、技術に関するお問い合わせ。</p>
         </div>
-        <button onclick="location.href='index.html'" class="mt-12 text-sm font-bold text-blue-600">← ホームへ戻る</button>
-    </main>
 
+        <form class="space-y-8 bg-slate-50 p-10 rounded-[2.5rem]">
+            <div>
+                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Your Name</label>
+                <input type="text" class="w-full bg-white border-none py-4 px-6 rounded-xl focus:ring-2 focus:ring-cyan-500">
+            </div>
+            <div>
+                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Email Address</label>
+                <input type="email" class="w-full bg-white border-none py-4 px-6 rounded-xl focus:ring-2 focus:ring-cyan-500">
+            </div>
+            <div>
+                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Message</label>
+                <textarea rows="5" class="w-full bg-white border-none py-4 px-6 rounded-xl focus:ring-2 focus:ring-cyan-500 resize-none"></textarea>
+            </div>
+            <button class="w-full bg-slate-900 text-white py-5 rounded-xl font-black hover:bg-cyan-600 transition-colors">SEND MESSAGE</button>
+        </form>
+    </main>
 </body>
 </html>
