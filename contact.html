@@ -8,9 +8,6 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        .form-container {
-            box-shadow: inset 0 2px 10px 0 rgba(0, 0, 0, 0.05);
-        }
     </style>
 </head>
 <body class="bg-white text-slate-900">
@@ -27,32 +24,30 @@
         </nav>
     </header>
 
-    <main class="pt-32 pb-20 px-4">
-        <section class="max-w-4xl mx-auto">
-            <div class="text-center mb-12">
-                <h1 class="text-5xl md:text-6xl font-black mb-6 italic tracking-tighter">Contact</h1>
-                <p class="text-slate-400 text-sm tracking-widest uppercase font-bold">お問い合わせフォーム</p>
+    <main class="pt-40 pb-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl font-black mb-12 italic">Contact</h1>
+            
+            <div class="bg-slate-50 p-12 md:p-20 rounded-[3rem] border border-slate-100 shadow-inner">
+                <p class="text-slate-500 mb-10 leading-loose">
+                    お問い合わせ・アンケートは、<br class="hidden md:block">
+                    以下のボタンよりGoogleフォームにて受け付けております。
+                </p>
+                
+                <a href="https://forms.gle/YtQHSea1XApUuC88A" target="_blank" 
+                   class="inline-block bg-slate-900 text-white px-12 py-5 rounded-full font-bold text-lg hover:bg-blue-600 hover:scale-105 transition-all shadow-xl">
+                    フォームを開いて送信する
+                </a>
+                
+                <p class="mt-8 text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                    ※別ウィンドウでGoogleフォームが開きます
+                </p>
             </div>
-
-            <div class="form-container bg-slate-50 rounded-[2.5rem] overflow-hidden border border-slate-100">
-                <iframe 
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSeYptHrYSqFZPIVZyQdiH-QwKIFuLK78WB7D56ihOXRZQ_-BQ/viewform?embedded=true" 
-                    width="100%" 
-                    height="800" 
-                    frameborder="0" 
-                    marginheight="0" 
-                    marginwidth="0"
-                    class="bg-transparent">
-                    読み込んでいます…
-                </iframe>
-            </div>
-
-            <div class="text-center mt-12">
-                <button onclick="location.href='index.html'" class="text-[10px] font-bold text-slate-300 hover:text-blue-600 transition-colors uppercase tracking-[0.3em]">
-                    ← Back to Home
-                </button>
-            </div>
-        </section>
+            
+            <button onclick="location.href='index.html'" class="mt-16 text-xs font-bold text-slate-300 hover:text-blue-600 transition-colors uppercase tracking-[0.2em]">
+                ← Back to Home
+            </button>
+        </div>
     </main>
 
     <footer class="py-12 text-center border-t border-slate-50 text-[10px] text-slate-400 font-bold tracking-[0.2em] uppercase">
