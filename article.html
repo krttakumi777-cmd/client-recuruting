@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News Detail | Future Tech Corp</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
     <style>
-        /* 本文内の画像やリストを綺麗に見せる設定 */
         .content-body img { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; }
         .content-body p { margin-bottom: 1.5rem; line-height: 1.8; }
         .content-body h2 { font-weight: bold; font-size: 1.25rem; margin-top: 2rem; margin-bottom: 1rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.5rem; }
@@ -41,7 +40,6 @@
 
     <script>
         async function loadDetail() {
-            // URLから「どの記事か(id)」と「どこのエンドポイントか(ep)」を取得
             const urlParams = new URLSearchParams(window.location.search);
             const contentId = urlParams.get('id');
             const endpoint = urlParams.get('ep');
@@ -61,16 +59,15 @@
 
                 if (response.ok) {
                     const post = await response.json();
-                    
                     document.getElementById('post-date').innerText = new Date(post.createdAt).toLocaleDateString('ja-JP');
                     document.getElementById('post-title').innerText = post.title;
-                    document.getElementById('post-body').innerHTML = post.content; // 本文(content)を表示
+                    document.getElementById('post-body').innerHTML = post.content;
                     
                     document.getElementById('loader').classList.add('hidden');
                     document.getElementById('article-content').classList.remove('hidden');
                 }
             } catch (e) {
-                document.getElementById('loader').innerText = '記事の読み込みに失敗しました。';
+                document.getElementById('loader').innerText = 'エラーが発生しました。';
             }
         }
         loadDetail();
