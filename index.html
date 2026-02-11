@@ -10,70 +10,44 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
-<body class="bg-gray-50 text-slate-800">
-    <div id="root">読み込み中...</div>
+<body class="bg-slate-50 text-slate-900">
+    <div id="root"></div>
 
     <script type="text/babel">
         const { useState, useEffect } = React;
 
         const App = () => {
             const [posts, setPosts] = useState([]);
-            const [error, setError] = useState(null);
+            const [debugInfo, setDebugInfo] = useState("読み込みを開始します...");
 
             useEffect(() => {
-                // ウィンドウ全体で microcms が使えるかチェック
-                if (typeof window.microcms === 'undefined') {
-                    setError("通信ライブラリの読み込みに失敗しました。再読み込みしてください。");
-                    return;
-                }
+                const fetchData = async () => {
+                    try {
+                        // 1. ライブラリチェック
+                        if (typeof window.microcms === 'undefined') {
+                            setDebugInfo("エラー: microCMSのライブラリが読み込めていません。");
+                            return;
+                        }
 
-                const client = window.microcms.createClient({
-                    serviceDomain: '1b0andgfz9',
-                    apiKey: 'o4RH59hH1wsh7G6D8z3B9p7J2L4M6N8q3O4RH', 
-                });
+                        // 2. クライアント作成
+                        const client = window.microcms.createClient({
+                            serviceDomain: '1b0andgfz9',
+                            apiKey: 'o4RH59hH1wsh7G6D8z3B9p7J2L4M6N8q3O4RH', 
+                        });
 
-                client.get({ endpoint: 'blog' })
-                    .then((res) => setPosts(res.contents))
-                    .catch((err) => {
-                        console.error(err);
-                        setError("記事が見つかりません。microCMSのエンドポイント名を確認してください。");
-                    });
-            }, []);
+                        setDebugInfo("microCMSに接続中... (ドメイン: 1b0andgfz9, エンドポイント: blog)");
 
-            return (
-                <div className="p-10 max-w-2xl mx-auto">
-                    <h1 className="text-4xl font-black mb-8 text-blue-600">TEST SITE</h1>
-                    
-                    {error && (
-                        <div className="p-4 bg-red-100 text-red-700 rounded-lg mb-6">
-                            {error}
-                        </div>
-                    )}
+                        // 3. データ取得
+                        const res = await client.get({ 
+                            endpoint: 'blog',
+                            queries: { limit: 10 }
+                        });
 
-                    <div className="space-y-4">
-                        {posts.length > 0 ? (
-                            posts.map(post => (
-                                <div key={post.id} className="p-6 bg-white shadow-lg rounded-xl border border-gray-100">
-                                    <h2 className="text-xl font-bold text-gray-800">{post.title}</h2>
-                                    <p className="text-gray-400 text-sm mt-2">
-                                        📅 {new Date(post.createdAt).toLocaleDateString()}
-                                    </p>
-                                </div>
-                            ))
-                        ) : (
-                            !error && <p className="text-gray-500 animate-pulse">microCMSから記事を取得中...</p>
-                        )}
-                    </div>
+                        if (res.contents && res.contents.length > 0) {
+                            setPosts(res.contents);
+                            setDebugInfo("✅ 成功しました！");
+                        } else {
+                            setDebugInfo("接続はできましたが、記事が0件です。microCMSで『公開』ボタンを押していますか？");
+                        }
 
-                    {posts.length > 0 && (
-                        <p className="mt-10 text-green-500 font-bold">✅ 成功！microCMSからデータが届きました！</p>
-                    )}
-                </div>
-            );
-        };
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
-    </script>
-</body>
-</html>
+                    } catch (
