@@ -53,17 +53,24 @@
                         data.contents.forEach(post => {
                             const date = new Date(post.createdAt).toLocaleDateString('ja-JP');
                             const card = document.createElement('div');
-                            // クリックしたら詳細ページ(article.html)へ、記事IDを持って飛ぶように設定
                             card.onclick = () => { location.href = 'article.html?id=' + post.id + '&ep=' + ep; };
-                            card.className = "p-6 bg-white rounded-xl shadow-sm border border-slate-100 hover:border-blue-400 transition-all cursor-pointer group";
+                            card.className = "p-6 bg-white rounded-xl shadow-sm border border-slate-100 hover:border-blue-400 transition-all cursor-pointer group flex gap-4 md:gap-6 items-start";
                             
+                            // サムネイルがあれば表示
+                            const thumbUrl = post.thumbnail ? post.thumbnail.url : '';
+                            const thumbnailHtml = thumbUrl ? 
+                                `<img src="${thumbUrl}" class="w-20 h-20 md:w-28 md:h-28 object-cover rounded-lg shadow-sm shrink-0">` : '';
+
                             card.innerHTML = 
-                                '<div class="flex items-center gap-4 mb-2">' +
-                                    '<span class="text-[10px] font-bold bg-blue-50 text-blue-600 px-2 py-1 rounded">NEWS</span>' +
-                                    '<span class="text-xs font-medium text-slate-400">' + date + '</span>' +
-                                '</div>' +
-                                '<h3 class="font-bold text-slate-800 group-hover:text-blue-600 transition-colors mb-2">' + post.title + '</h3>' +
-                                '<p class="text-sm text-slate-500 leading-relaxed">' + (post.description || '') + '</p>';
+                                thumbnailHtml + 
+                                '<div class="flex-1">' +
+                                    '<div class="flex items-center gap-4 mb-2">' +
+                                        '<span class="text-[10px] font-bold bg-blue-50 text-blue-600 px-2 py-1 rounded">NEWS</span>' +
+                                        '<span class="text-xs font-medium text-slate-400">' + date + '</span>' +
+                                    '</div>' +
+                                    '<h3 class="font-bold text-slate-800 group-hover:text-blue-600 transition-colors mb-2">' + post.title + '</h3>' +
+                                    '<p class="text-sm text-slate-500 leading-relaxed line-clamp-2">' + (post.description || '') + '</p>' +
+                                '</div>';
                                 
                             container.appendChild(card);
                         });
